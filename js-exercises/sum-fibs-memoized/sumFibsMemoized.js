@@ -1,19 +1,17 @@
 function sumFibs(num) {
-  let a = 1;
-  let b = 1;
-  let sum = 2;
+  /* Check for valid positive number */
+  if (num <= 0) return 0;
 
-  let tmp = a + b;
-  while (tmp <= num) {
-    if (tmp % 2 !== 0 && tmp <= num) {
-      sum += tmp;
-    }
-    a = b;
-    b = tmp;
-    tmp = a + b;
+  /* Initialized the fibbo array */
+  const arrFib = [1, 1];
+  let nextFib = 0;
+
+  /* Fill the array */
+  while ((nextFib = arrFib[0] + arrFib[1]) <= num) {
+    arrFib.unshift(nextFib);
   }
 
-  return sum;
+  return arrFib.filter((x) => x % 2 !== 0).reduce((a, b) => a + b);
 }
 
 function cacheFunction(fn) {
